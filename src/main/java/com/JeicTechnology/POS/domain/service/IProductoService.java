@@ -27,6 +27,8 @@ public interface IProductoService {
      */
     ProductoPojo save(ProductoPojo newProducto);
 
+    Optional<ProductoPojo> update(ProductoPojo newProducto);
+
     /**
      * elimina un producto dado su id
      * @param idProducto id del producto

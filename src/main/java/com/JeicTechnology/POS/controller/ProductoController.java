@@ -40,8 +40,18 @@ public class ProductoController {
         try {
             return ResponseEntity.status(HttpStatus.CREATED).body(iProductoService.save(newProductoPojo));
         }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
+    }
+
+    @PatchMapping
+    public ResponseEntity<ProductoPojo> update(@RequestBody ProductoPojo updateProductoPojo){
+        return ResponseEntity.of(iProductoService.update(updateProductoPojo));
+    }
+
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<Boolean> delete(@PathVariable Integer id){
+        return new ResponseEntity<>(this.iProductoService.delete(id) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
     }
 
 }

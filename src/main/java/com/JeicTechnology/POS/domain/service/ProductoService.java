@@ -33,12 +33,19 @@ public class ProductoService implements IProductoService{
     }
 
     @Override
-    public boolean delete(Integer idProducto) {
-        try {
-            iProductoRepository.delete(idProducto);
-            return true;
-        }catch (Exception e){
-            return false;
+    public Optional<ProductoPojo> update(ProductoPojo newProducto) {
+        if (iProductoRepository.getProducto(newProducto.getId()).isEmpty()){
+            return Optional.empty();
         }
+        return Optional.of(iProductoRepository.save(newProducto));
+    }
+
+    @Override
+    public boolean delete(Integer idProducto) {
+       if (iProductoRepository.getProducto(idProducto).isEmpty()){
+           return false;
+       }
+       iProductoRepository.delete(idProducto);
+       return true;
     }
 }

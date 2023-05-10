@@ -1,6 +1,6 @@
 package com.JeicTechnology.POS.persistance.repository;
 
-import com.JeicTechnology.POS.domain.pojo.ProductoPojo;
+import com.JeicTechnology.POS.domain.dto.ProductoDto;
 import com.JeicTechnology.POS.domain.repository.IProductoRepository;
 import com.JeicTechnology.POS.persistance.entity.ProductoEntity;
 import com.JeicTechnology.POS.persistance.mapper.IProductoMapper;
@@ -31,7 +31,7 @@ public class ProductoRepository implements IProductoRepository {
      * @return lista de productos
      */
     @Override
-    public List<ProductoPojo> getAll() {
+    public List<ProductoDto> getAll() {
         return iProductoMapper.toProductosPojo(iProductoCrudRepository.findAll());
     }
 
@@ -41,7 +41,7 @@ public class ProductoRepository implements IProductoRepository {
      * @return optional del producto encontrado
      */
     @Override
-    public Optional<ProductoPojo> getProducto(Integer id) {
+    public Optional<ProductoDto> getProducto(Integer id) {
         return iProductoCrudRepository.findById(id).map(iProductoMapper::toProductoPojo);
         //productoEntity -> iProductoMapper.toProductoPojo(productoEntity) ----metodo labda
         //iProductoMapper::toProductoPojo ----metodo por REFERENCIA
@@ -53,7 +53,7 @@ public class ProductoRepository implements IProductoRepository {
      * @return producto guardado
      */
     @Override
-    public ProductoPojo save(ProductoPojo newProducto) {
+    public ProductoDto save(ProductoDto newProducto) {
         ProductoEntity productoEntity = iProductoMapper.toProductoEntity(newProducto);
         return iProductoMapper.toProductoPojo(iProductoCrudRepository.save(productoEntity));
     }

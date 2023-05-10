@@ -1,15 +1,15 @@
-package com.JeicTechnology.POS.domain.pojo;
+package com.JeicTechnology.POS.domain.dto;
 
 import lombok.Getter;
 import lombok.Setter;
 
 /**
- * Pojo de producto
+ * Dto de producto
  */
 
 @Getter
 @Setter
-public class ProductoPojo {
+public class ProductoDto {
     private Integer id;
     private String code;
 }

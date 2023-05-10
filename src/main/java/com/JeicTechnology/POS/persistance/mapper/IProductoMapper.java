@@ -1,6 +1,6 @@
 package com.JeicTechnology.POS.persistance.mapper;
 
-import com.JeicTechnology.POS.domain.pojo.ProductoPojo;
+import com.JeicTechnology.POS.domain.dto.ProductoDto;
 import com.JeicTechnology.POS.persistance.entity.ProductoEntity;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
@@ -18,20 +18,20 @@ public interface IProductoMapper {
      */
     @Mapping(source = "id", target = "id")
     @Mapping(source = "code", target = "code")
-    ProductoPojo toProductoPojo(ProductoEntity productoEntity);
+    ProductoDto toProductoPojo(ProductoEntity productoEntity);
 
     /**
      * convierte un pojo a una entidad de producto
-     * @param productoPojo pojo a convertir
+     * @param productoDto pojo a convertir
      * @return entidad convertida
      */
     @InheritInverseConfiguration
-    ProductoEntity toProductoEntity(ProductoPojo productoPojo);
+    ProductoEntity toProductoEntity(ProductoDto productoDto);
 
     /**
      * retorna una lista de productos transformada a pojo de una lista de entidades
      * @param productosEntity entidad a transformar
      * @return lista transformada
      */
-    List<ProductoPojo> toProductosPojo(List<ProductoEntity> productosEntity);
+    List<ProductoDto> toProductosPojo(List<ProductoEntity> productosEntity);
 }

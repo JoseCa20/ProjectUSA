@@ -1,8 +1,8 @@
 package com.JeicTechnology.POS.domain.service;
 
 import com.JeicTechnology.POS.domain.dto.ClienteDto;
-import com.JeicTechnology.POS.domain.dto.ProductoDto;
 import com.JeicTechnology.POS.domain.repository.IClienteRepository;
+import com.JeicTechnology.POS.domain.useCase.IClienteUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
-public class ClienteService implements IClienteService{
+public class ClienteService implements IClienteUseCase {
 
     private final IClienteRepository iClienteRepository;
 

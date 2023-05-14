@@ -1,11 +1,12 @@
-package com.JeicTechnology.POS.domain.repository;
+package com.JeicTechnology.POS.domain.useCase;
 
+import com.JeicTechnology.POS.domain.dto.ClienteDto;
 import com.JeicTechnology.POS.domain.dto.ProductoDto;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface IProductoRepository {
+public interface IProductoUseCase {
 
     List<ProductoDto> getAll();
 
@@ -13,5 +14,7 @@ public interface IProductoRepository {
 
     ProductoDto save(ProductoDto newProducto);
 
-    void delete(Integer idProducto);
+    Optional<ProductoDto> update(ProductoDto newProducto);
+
+    Boolean delete(Integer idProducto);
 }

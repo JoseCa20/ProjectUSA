@@ -2,8 +2,8 @@ package com.JeicTechnology.POS.persistance.repository;
 
 import com.JeicTechnology.POS.domain.dto.ClienteDto;
 import com.JeicTechnology.POS.domain.repository.IClienteRepository;
+import com.JeicTechnology.POS.persistance.crud.IClienteCrudRepository;
 import com.JeicTechnology.POS.persistance.entity.ClienteEntity;
-import com.JeicTechnology.POS.persistance.entity.ProductoEntity;
 import com.JeicTechnology.POS.persistance.mapper.IClienteMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;

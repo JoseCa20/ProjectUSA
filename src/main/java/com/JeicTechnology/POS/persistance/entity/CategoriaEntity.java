@@ -4,25 +4,24 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @Entity
-@Table(name = "clientes")
-public class ClienteEntity {
+@Table(name = "categorias")
+public class CategoriaEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "nombre")
-    private String name;
-
-    @Column(name = "telefono")
-    private String phone_number;
-
-    @Column(name = "direccion")
-    private String addres;
+    @Column(name = "categoria")
+    private String category;
 
     @Column(name = "estado")
     private String active;
+
+    @OneToMany(mappedBy = "categoriaEntity")
+    List<ProductoEntity> productoEntityList;
 }

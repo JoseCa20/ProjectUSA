@@ -3,13 +3,19 @@ package com.JeicTechnology.POS.domain.dto;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
-public class ClienteDto {
+@Getter @Setter
+public class ProveedorDto {
 
     private Integer id;
-    private String name;
+
+    private String nit;
+
+    private String supplier;
+
     private String phone_number;
+
     private String addres;
-    private String active;
+
+    private String state;
+
 }

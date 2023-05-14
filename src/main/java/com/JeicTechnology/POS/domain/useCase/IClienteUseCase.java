@@ -1,12 +1,11 @@
-package com.JeicTechnology.POS.domain.service;
+package com.JeicTechnology.POS.domain.useCase;
 
 import com.JeicTechnology.POS.domain.dto.ClienteDto;
-import com.JeicTechnology.POS.domain.dto.ProductoDto;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface IClienteService {
+public interface IClienteUseCase {
 
     /**
      * devuelve una lista de clientes
@@ -35,12 +34,11 @@ public interface IClienteService {
      */
     ClienteDto save(ClienteDto newCliente);
 
+    Optional<ClienteDto> update(ClienteDto newCliente);
+
     /**
      * elimina un cliente dado su id
      * @param idCliente id del cliente
      */
-
-    Optional<ClienteDto> update(ClienteDto newCliente);
-
     Boolean delete(Integer idCliente);
 }

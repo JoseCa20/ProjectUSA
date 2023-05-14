@@ -1,7 +1,6 @@
 package com.JeicTechnology.POS.domain.repository;
 
 import com.JeicTechnology.POS.domain.dto.ClienteDto;
-import com.JeicTechnology.POS.domain.dto.ProductoDto;
 
 import java.util.List;
 import java.util.Optional;

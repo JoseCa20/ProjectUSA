@@ -1,4 +1,4 @@
-package com.JeicTechnology.POS.persistance.repository;
+package com.JeicTechnology.POS.persistance.crud;
 
 import com.JeicTechnology.POS.persistance.entity.ProductoEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

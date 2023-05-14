@@ -2,18 +2,16 @@ package com.JeicTechnology.POS.domain.service;
 
 import com.JeicTechnology.POS.domain.dto.ProductoDto;
 import com.JeicTechnology.POS.domain.repository.IProductoRepository;
+import com.JeicTechnology.POS.domain.useCase.IProductoUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-/**
- * servicio de producto
- */
 @RequiredArgsConstructor
 @Service
-public class ProductoService implements IProductoService{
+public class ProductoService implements IProductoUseCase {
 
     private final IProductoRepository iProductoRepository;
 
@@ -33,19 +31,19 @@ public class ProductoService implements IProductoService{
     }
 
     @Override
-    public Optional<ProductoDto> update(ProductoDto newProducto) {
-        if (iProductoRepository.getProducto(newProducto.getId()).isEmpty()){
+    public Optional<ProductoDto> update(ProductoDto modificarProducto) {
+        if (iProductoRepository.getProducto(modificarProducto.getId()).isEmpty()){
             return Optional.empty();
         }
-        return Optional.of(iProductoRepository.save(newProducto));
+        return Optional.of(iProductoRepository.save(modificarProducto));
     }
 
     @Override
-    public boolean delete(Integer idProducto) {
-       if (iProductoRepository.getProducto(idProducto).isEmpty()){
-           return false;
-       }
-       iProductoRepository.delete(idProducto);
-       return true;
+    public Boolean delete(Integer idProducto) {
+        if (iProductoRepository.getProducto(idProducto).isEmpty()){
+            return false;
+        }
+        iProductoRepository.delete(idProducto);
+        return true;
     }
 }

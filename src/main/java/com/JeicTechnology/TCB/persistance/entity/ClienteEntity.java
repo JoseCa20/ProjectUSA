@@ -4,14 +4,17 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter @Setter
 @Entity
 @Table(name = "clientes")
 public class ClienteEntity {
 
-    @Id
-    @Column(name = "cedula", nullable = false)
-    private Integer idCard;
+    @Id()
+    @GeneratedValue()
+    @Column(name = "cedula", nullable = false, unique = true)
+    private String idCard;
 
     @Column(name = "nombre")
     private String name;
@@ -22,7 +25,7 @@ public class ClienteEntity {
     @Column(name = "direccion")
     private String addres;
 
-    @Column(name = "correo")
+    @Column(name = "correo", unique = true)
     private String email;
 
     @Column(name = "clave")
@@ -32,4 +35,7 @@ public class ClienteEntity {
 
     @Column(name = "estado")
     private String active;
+
+    @OneToMany(mappedBy = "clienteEntity")
+    private List<GuiaEntity> guiaEntity;
 }

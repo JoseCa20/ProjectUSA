@@ -16,17 +16,10 @@ public interface IClienteUseCase {
 
     /**
      * devuelve un cliente dado su id
-     * @param id del cliente
-     * @return Optional del cliente encontrado
-     */
-    Optional<ClienteDto> getCliente(Integer id);
-
-    /**
-     * devuelve un cliente dado su id
      * @param idCard del cliente
      * @return Optional del cliente encontrado
      */
-    Optional<ClienteDto> getClienteByIdCard(Integer idCard);
+    Optional<ClienteDto> getClienteByIdCard(String idCard);
 
     Optional<ClienteDto> getClienteByEmail(String email);
 
@@ -37,11 +30,11 @@ public interface IClienteUseCase {
      */
     ResponseClienteDto save(ClienteDto newCliente);
 
-    Optional<ClienteDto> update(ClienteDto newCliente);
+    Optional<ClienteDto> update(ClienteDto modifyCliente);
 
     /**
      * elimina un cliente dado su id
-     * @param idCliente id del cliente
+     * @param idCard id del cliente
      */
-    Boolean delete(Integer idCliente);
+    boolean delete(String idCard);
 }

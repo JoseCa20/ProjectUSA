@@ -12,6 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -19,13 +20,13 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
     private final JwtAuthenticationProvider jwtAuthenticationProvider;
 
-    private List<String> urlsToSkip = List.of("/auth", "/swagger-ui.html", "/clientes");
-
+    private List<String> urlsToSkip = Arrays.asList("/auth");
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
         return urlsToSkip.stream().anyMatch(url -> request.getRequestURI().contains(url));
     }
+
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -41,12 +42,8 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
         String[] authElements = header.split(" ");
 
-        if(authElements.length != 2 || !"Bearer".equals(authElements[0])){
-            try {
-                throw new UnauthorizedException();
-            } catch (UnauthorizedException e) {
-                throw new RuntimeException(e);
-            }
+        if(authElements.length != 2 || !"Bearer".equals(authElements[0])) {
+            throw new UnauthorizedException();
         }
 
         try {
@@ -58,4 +55,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         }
         filterChain.doFilter(request, response);
     }
+
+
 }

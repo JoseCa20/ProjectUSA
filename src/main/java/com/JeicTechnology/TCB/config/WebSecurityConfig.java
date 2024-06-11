@@ -13,6 +13,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.context.request.RequestScope;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -41,24 +42,22 @@ public class WebSecurityConfig{
                 .and()
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(requests ->
-                        requests
-                                .requestMatchers("/auth/**", "/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**").permitAll()
-                                //.requestMatchers(HttpMethod.GET, "/customers").hasAnyRole(Roles.CUSTOMER, Roles.ADMIN)
-                                .requestMatchers(HttpMethod.GET, "/customers/**").hasAnyRole(Roles.CLIENTE, Roles.ADMIN)
-                                .requestMatchers(HttpMethod.DELETE, "/customers/**").hasRole(Roles.ADMIN)
-                                //.requestMatchers(HttpMethod.DELETE, "/customers/**").hasAuthority("ELIMINAR_PRIVILEGE")
+                        requests.requestMatchers("/auth/**").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/clientes/**").hasAnyRole(Roles.CLIENTE, Roles.ADMIN)
+                                .requestMatchers(HttpMethod.DELETE, "/clientes/**").hasAnyRole(Roles.ADMIN, Roles.CLIENTE)
 
                                 .requestMatchers(HttpMethod.GET,"/cars/**").hasAnyRole(Roles.CLIENTE, Roles.ADMIN)
                                 .requestMatchers(HttpMethod.POST, "/cars/**").hasRole(Roles.ADMIN)
-                                //.requestMatchers("/cars").hasAuthority("COMPRAR_PRIVILEGE")
-                                //.requestMatchers("/customers").hasRole(Roles.ADMIN)
+
 
                                 //solo toma el primer filtro, ya no se puede anidar un rol con una autoridad
 
                                 //hasAuthority o hasRole para un solo rol/autoridad
                                 //hasAnyAuthority para varios roles
                                 .anyRequest().authenticated()
+
                 );
+
         return http.build();
     }
 

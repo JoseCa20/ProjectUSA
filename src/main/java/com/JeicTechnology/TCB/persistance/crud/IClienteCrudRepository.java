@@ -5,8 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface IClienteCrudRepository extends JpaRepository<ClienteEntity, Integer> {
+public interface IClienteCrudRepository extends JpaRepository<ClienteEntity, String> {
 
-    Optional<ClienteEntity> findByIdCard(Integer idCard);
+    Optional<ClienteEntity> findByIdCard(String idCard);
     Optional<ClienteEntity> findByEmail(String email);
 }

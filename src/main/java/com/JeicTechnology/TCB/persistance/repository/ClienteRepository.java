@@ -25,13 +25,8 @@ public class ClienteRepository implements IClienteRepository {
     }
 
     @Override
-    public Optional<ClienteDto> getCliente(Integer idCard) {
+    public Optional<ClienteDto> getClienteByIdCard(String idCard) {
         return iClienteCrudRepository.findByIdCard(idCard).map(iClienteMapper::toClienteDto);
-    }
-
-    @Override
-    public Optional<ClienteDto> getClienteByIdCard(Integer idCard) {
-        return Optional.empty();
     }
 
     @Override
@@ -41,12 +36,11 @@ public class ClienteRepository implements IClienteRepository {
 
     @Override
     public ClienteDto save(ClienteDto newCliente) {
-        ClienteEntity clienteEntity = iClienteMapper.toClienteEntity(newCliente);
-        return iClienteMapper.toClienteDto(iClienteCrudRepository.save(clienteEntity));
+        return iClienteMapper.toClienteDto(iClienteCrudRepository.save(iClienteMapper.toClienteEntity(newCliente)));
     }
 
     @Override
-    public void delete(Integer idCliente) {
-        iClienteCrudRepository.deleteById(idCliente);
+    public void delete(String idCard) {
+        iClienteCrudRepository.deleteById(idCard);
     }
 }

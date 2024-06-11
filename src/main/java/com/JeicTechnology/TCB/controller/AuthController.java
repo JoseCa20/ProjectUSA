@@ -24,9 +24,8 @@ public class AuthController {
     private final IAuthUseCase iAuthUseCase;
 
     @PostMapping(path = "/register")
-    public ResponseEntity<ResponseClienteDto> save(@RequestBody ClienteDto clienteDtoNew){
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(iClienteUseCase.save(clienteDtoNew));
+    public ResponseEntity<ResponseClienteDto> save(@RequestBody ClienteDto newClienteDto){
+        return ResponseEntity.status(HttpStatus.CREATED).body(iClienteUseCase.save(newClienteDto));
     }
 
     @PostMapping(path = "/sign-in")

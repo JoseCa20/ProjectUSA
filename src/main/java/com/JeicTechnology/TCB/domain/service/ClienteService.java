@@ -29,12 +29,7 @@ public class ClienteService implements IClienteUseCase {
     }
 
     @Override
-    public Optional<ClienteDto> getCliente(Integer id) {
-        return iClienteRepository.getCliente(id);
-    }
-
-    @Override
-    public Optional<ClienteDto> getClienteByIdCard(Integer idCard) {
+    public Optional<ClienteDto> getClienteByIdCard(String idCard) {
         return iClienteRepository.getClienteByIdCard(idCard);
     }
 
@@ -57,26 +52,38 @@ public class ClienteService implements IClienteUseCase {
         String passwordGenerated = generateRandomPassword(10);
         newCliente.setPassword(passwordEncoder.encode(passwordGenerated));
         newCliente.setActive("Activo");
-        newCliente.setRol(Roles.USUARIO);
+        newCliente.setRol(Roles.CLIENTE);
         iClienteRepository.save(newCliente);
+
+        return new ResponseClienteDto(passwordGenerated);
+    }
+
+    public ResponseClienteDto crearAdministrador(ClienteDto admin){
+        String passwordGenerated = generateRandomPassword(10);
+        admin.setPassword(passwordEncoder.encode(passwordGenerated));
+        admin.setActive("Activo");
+        admin.setRol(Roles.ADMIN);
+        admin.setEmail("administrador@gmail.com");
+        admin.setName("Administrador");
+        iClienteRepository.save(admin);
 
         return new ResponseClienteDto(passwordGenerated);
     }
 
     @Override
     public Optional<ClienteDto> update(ClienteDto modificarCliente) {
-        if (iClienteRepository.getCliente(modificarCliente.getIdCard()).isEmpty()){
+        if (iClienteRepository.getClienteByIdCard(modificarCliente.getIdCard()).isEmpty()){
             return Optional.empty();
         }
         return Optional.of(iClienteRepository.save(modificarCliente));
     }
 
     @Override
-    public Boolean delete(Integer idCliente) {
-        if (iClienteRepository.getCliente(idCliente).isEmpty()){
+    public boolean delete(String idCard) {
+        if (iClienteRepository.getClienteByIdCard(idCard).isEmpty()){
             return false;
         }
-        iClienteRepository.delete(idCliente);
+        iClienteRepository.delete(idCard);
         return true;
     }
 

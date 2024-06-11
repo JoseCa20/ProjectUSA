@@ -22,9 +22,9 @@ public class ClienteController {
         return ResponseEntity.status(HttpStatus.OK).body(iClienteUseCase.getAll());
     }
 
-    @GetMapping(path = "/{id}")
-    public ResponseEntity<ClienteDto> getClienteById(@PathVariable Integer id){
-        return ResponseEntity.of(iClienteUseCase.getCliente(id));
+    @GetMapping(path = "/{idCard}")
+    public ResponseEntity<ClienteDto> getClienteById(@PathVariable String idCard){
+        return ResponseEntity.of(iClienteUseCase.getClienteByIdCard(idCard));
     }
 
     @GetMapping(path = "/email/{email}")
@@ -42,8 +42,8 @@ public class ClienteController {
         return ResponseEntity.of(iClienteUseCase.update(updateClienteDto));
     }
 
-    @DeleteMapping(path = "/{id}")
-    public ResponseEntity<Boolean> delete(@PathVariable Integer id){
-        return new ResponseEntity<>(this.iClienteUseCase.delete(id) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
+    @DeleteMapping(path = "/{idCard}")
+    public ResponseEntity<Boolean> delete(@PathVariable String idCard){
+        return new ResponseEntity<>(this.iClienteUseCase.delete(idCard) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
     }
 }

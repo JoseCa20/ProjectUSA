@@ -1,5 +1,6 @@
 package com.JeicTechnology.TCB.security;
 
+import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.JeicTechnology.TCB.domain.dto.ClienteDto;
 import org.springframework.beans.factory.annotation.Value;
@@ -32,7 +33,7 @@ public class JwtAuthenticationProvider {
 
         Algorithm algorithm = Algorithm.HMAC256(SecretKey);
 
-        String tokenCreated = com.auth0.jwt.JWT.create()
+        String tokenCreated = JWT.create()
                 .withClaim("cardId", clienteJwt.getIdCard())
                 .withClaim("name", clienteJwt.getName())
                 .withClaim("phone_number", clienteJwt.getPhone_number())
@@ -47,7 +48,8 @@ public class JwtAuthenticationProvider {
     }
 
     public Authentication validateToken(String token) throws AuthenticationException {
-        com.auth0.jwt.JWT.require(Algorithm.HMAC256(SecretKey)).build().verify(token);
+
+        JWT.require(Algorithm.HMAC256(SecretKey)).build().verify(token);
 
         ClienteDto exists = listToken.get(token);
         if (exists == null){

@@ -25,7 +25,7 @@ public class ClienteRepository implements IClienteRepository {
     }
 
     @Override
-    public Optional<ClienteDto> getClienteByIdCard(String idCard) {
+    public Optional<ClienteDto> getClienteByIdCard(Integer idCard) {
         return iClienteCrudRepository.findByIdCard(idCard).map(iClienteMapper::toClienteDto);
     }
 
@@ -40,7 +40,7 @@ public class ClienteRepository implements IClienteRepository {
     }
 
     @Override
-    public void delete(String idCard) {
+    public void delete(Integer idCard) {
         iClienteCrudRepository.deleteById(idCard);
     }
 }

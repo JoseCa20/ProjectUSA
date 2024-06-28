@@ -12,7 +12,7 @@ public class GuiaResponseDto {
 
     private Integer id;
 
-    private Integer id_customer;
+    private Integer idCard;
 
     private Double total;
 

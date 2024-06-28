@@ -7,10 +7,10 @@ import lombok.Setter;
 @Setter
 public class ClienteDto {
 
-    private String idCard;
-    private String name;
-    private String phone_number;
-    private String addres;
+    private Integer idCard;
+    private String fullName;
+    private String cellphone;
+    private String address;
     private String email;
     private String password;
     private String rol;

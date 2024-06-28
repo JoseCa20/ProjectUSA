@@ -17,8 +17,8 @@ public class GuiaEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "id_cliente")
-    private Integer id_customer;
+    @Column(name = "cedula")
+    private String idCard;
 
     private Double total;
 
@@ -28,7 +28,7 @@ public class GuiaEntity {
 
 
     @ManyToOne
-    @JoinColumn(name = "id_cliente", insertable = false, updatable = false)
+    @JoinColumn(name = "cedula", insertable = false, updatable = false)
     private ClienteEntity clienteEntity;
 
     @OneToMany(mappedBy = "guiaEntity", cascade = {CascadeType.ALL})

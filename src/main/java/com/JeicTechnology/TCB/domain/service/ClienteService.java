@@ -29,7 +29,7 @@ public class ClienteService implements IClienteUseCase {
     }
 
     @Override
-    public Optional<ClienteDto> getClienteByIdCard(String idCard) {
+    public Optional<ClienteDto> getClienteByIdCard(Integer idCard) {
         return iClienteRepository.getClienteByIdCard(idCard);
     }
 
@@ -64,7 +64,7 @@ public class ClienteService implements IClienteUseCase {
         admin.setActive("Activo");
         admin.setRol(Roles.ADMIN);
         admin.setEmail("administrador@gmail.com");
-        admin.setName("Administrador");
+        admin.setFullName("Administrador");
         iClienteRepository.save(admin);
 
         return new ResponseClienteDto(passwordGenerated);
@@ -79,7 +79,7 @@ public class ClienteService implements IClienteUseCase {
     }
 
     @Override
-    public boolean delete(String idCard) {
+    public boolean delete(Integer idCard) {
         if (iClienteRepository.getClienteByIdCard(idCard).isEmpty()){
             return false;
         }

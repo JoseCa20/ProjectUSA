@@ -19,7 +19,7 @@ public interface IClienteUseCase {
      * @param idCard del cliente
      * @return Optional del cliente encontrado
      */
-    Optional<ClienteDto> getClienteByIdCard(String idCard);
+    Optional<ClienteDto> getClienteByIdCard(Integer idCard);
 
     Optional<ClienteDto> getClienteByEmail(String email);
 
@@ -36,5 +36,5 @@ public interface IClienteUseCase {
      * elimina un cliente dado su id
      * @param idCard id del cliente
      */
-    boolean delete(String idCard);
+    boolean delete(Integer idCard);
 }

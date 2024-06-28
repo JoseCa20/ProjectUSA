@@ -12,18 +12,17 @@ import java.util.List;
 public class ClienteEntity {
 
     @Id()
-    @GeneratedValue()
     @Column(name = "cedula", nullable = false, unique = true)
-    private String idCard;
+    private Integer idCard;
 
     @Column(name = "nombre")
-    private String name;
+    private String fullName;
 
     @Column(name = "telefono")
-    private String phone_number;
+    private String cellphone;
 
     @Column(name = "direccion")
-    private String addres;
+    private String address;
 
     @Column(name = "correo", unique = true)
     private String email;

@@ -13,7 +13,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-@CrossOrigin
+@CrossOrigin()
 @RequiredArgsConstructor
 @RestController
 @RequestMapping(path = "/auth")
@@ -23,7 +23,7 @@ public class AuthController {
 
     private final IAuthUseCase iAuthUseCase;
 
-    @PostMapping(path = "/register")
+    @PostMapping(path = "/sign-up")
     public ResponseEntity<ResponseClienteDto> save(@RequestBody ClienteDto newClienteDto){
         return ResponseEntity.status(HttpStatus.CREATED).body(iClienteUseCase.save(newClienteDto));
     }

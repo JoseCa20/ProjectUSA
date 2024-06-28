@@ -42,7 +42,7 @@ public class WebSecurityConfig{
                 .and()
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(requests ->
-                        requests.requestMatchers("/auth/**").permitAll()
+                        requests.requestMatchers("/auth/sign-up", "/auth/sign-in").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/clientes/**").hasAnyRole(Roles.CLIENTE, Roles.ADMIN)
                                 .requestMatchers(HttpMethod.DELETE, "/clientes/**").hasAnyRole(Roles.ADMIN, Roles.CLIENTE)
 

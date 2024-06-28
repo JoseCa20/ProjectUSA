@@ -23,7 +23,7 @@ public class ClienteController {
     }
 
     @GetMapping(path = "/{idCard}")
-    public ResponseEntity<ClienteDto> getClienteById(@PathVariable String idCard){
+    public ResponseEntity<ClienteDto> getClienteById(@PathVariable Integer idCard){
         return ResponseEntity.of(iClienteUseCase.getClienteByIdCard(idCard));
     }
 
@@ -43,7 +43,7 @@ public class ClienteController {
     }
 
     @DeleteMapping(path = "/{idCard}")
-    public ResponseEntity<Boolean> delete(@PathVariable String idCard){
+    public ResponseEntity<Boolean> delete(@PathVariable Integer idCard){
         return new ResponseEntity<>(this.iClienteUseCase.delete(idCard) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
     }
 }

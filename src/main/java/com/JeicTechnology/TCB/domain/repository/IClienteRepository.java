@@ -18,7 +18,7 @@ public interface IClienteRepository {
      * @param idCard del cliente
      * @return Optional del cliente encontrado
      */
-    Optional<ClienteDto> getClienteByIdCard(String idCard);
+    Optional<ClienteDto> getClienteByIdCard(Integer idCard);
 
     Optional<ClienteDto> getClienteByEmail(String email);
 
@@ -33,5 +33,5 @@ public interface IClienteRepository {
      * elimina un cliente dado su id
      * @param idCard id del cliente
      */
-    void delete(String idCard);
+    void delete(Integer idCard);
 }

@@ -34,10 +34,10 @@ public class JwtAuthenticationProvider {
         Algorithm algorithm = Algorithm.HMAC256(SecretKey);
 
         String tokenCreated = JWT.create()
-                .withClaim("cardId", clienteJwt.getIdCard())
-                .withClaim("name", clienteJwt.getName())
-                .withClaim("phone_number", clienteJwt.getPhone_number())
-                .withClaim("addres", clienteJwt.getAddres())
+                .withClaim("idCard", clienteJwt.getIdCard())
+                .withClaim("fullName", clienteJwt.getFullName())
+                .withClaim("cellphone", clienteJwt.getCellphone())
+                .withClaim("address", clienteJwt.getAddress())
                 .withClaim("email", clienteJwt.getEmail())
                 .withIssuedAt(now)
                 .withExpiresAt(validity)
